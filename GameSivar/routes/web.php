@@ -21,11 +21,22 @@ Route::get('/', function () {
 });
 
 
+Route::get('/tarjetas/index',[TarjetaController::class,'index'])->name('tarjetas.index');
+
+Route::get('/tarjetas/create',[TarjetaController::class,'create'])->name('tarjetas.create');
+
+Route::post('/tarjetas/store',[TarjetaController::class,'store'])->name('tarjetas.store');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/index',[App\Http\Controllers\TarjetaController::class,'index'])->name('tarjetas.index');
+Route::get('/tarjetas/index',[TarjetaController::class,'index'])->name('tarjetas.index');
+
+Route::get('/tarjetas/create',[TarjetaController::class,'create'])->name('tarjetas.create');
+
+Route::post('/tarjetas/store',[TarjetaController::class,'store'])->name('tarjetas.store');
+
 
 Route::get('/empleado', [App\Http\Controllers\EmpleadoController::class, 'index'])->name('empleado.index'); // con el name se hace el redireccionamiento en el controller 
 Route::post('/registrar-empleado', [EmpleadoController::class, 'registrar'])->name('empleado.registrar');
