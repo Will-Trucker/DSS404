@@ -1,54 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
 
-<form action="{{ route('empleado.registrar') }}" method="POST" class="bg-red-500">
-    @csrf
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Empleado</title>
+    <link href="https://unpkg.com/tailwindcss@^2.2/dist/tailwind.min.css" rel="stylesheet">
+</head>
 
-    <label class="form-control w-full max-w-xs">
-        <div class="label">
-            <span class="label-text">Nombre:</span>
-        </div>
-        <input type="text" name="nombre" placeholder="type here" class="input input-bordered w-full max-w-xs" required/>
-    </label>
+<body class="bg-gray-100">
+    <br>
+    <h1 class="text-center text-2xl font-bold mb-4">Empleado</h1>
+    <div class="container mx-auto p-4">
 
-    <label class="form-control w-full max-w-xs">
-        <div class="label">
-            <span class="label-text">Apellido:</span>
-        </div>
-        <input type="text" name="apellido" placeholder="type here" class="input input-bordered w-full max-w-xs" required/>
-    </label>
+        <form action="{{ route('empleado.registrar') }}" method="POST" class="bg-white shadow-md rounded px-8 py-6 mb-4">
+            @csrf
 
-    <label class="form-control w-full max-w-xs">
-        <div class="label">
-            <span class="label-text">Fecha de contratacion:</span>
-        </div>
-        <input type="date" name="fecha_contratacion" required />
-    </label>
+            <div class="mb-4">
+                <label for="nombre" class="block text-gray-700 text-sm font-bold mb-2">Nombre:</label>
+                <input type="text" name="nombre" id="nombre" placeholder="Ingrese su nombre" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            </div>
 
-    <label class="form-control w-full max-w-xs">
-        <div class="label">
-            <span class="label-text">Fecha de Nacimiento:</span>
-        </div>
-        <input type="date" name="fecha_nacimiento" required />
-    </label>
+            <div class="mb-4">
+                <label for="apellido" class="block text-gray-700 text-sm font-bold mb-2">Apellido:</label>
+                <input type="text" name="apellido" id="apellido" placeholder="Ingrese su apellido" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            </div>
 
-    <label class="form-control w-full max-w-xs">
-        <div class="label">
-            <span class="label-text">Telefono:</span>
-        </div>
-        <input type="text" name="telefono" placeholder="type here" maxlength="9" class="input input-bordered w-full max-w-xs" required />
-    </label>
+            <div class="mb-4">
+                <label for="fecha_contratacion" class="block text-gray-700 text-sm font-bold mb-2">Fecha de contratación:</label>
+                <input type="date" name="fecha_contratacion" id="fecha_contratacion" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            </div>
 
-    <input type="submit" class="btn" value="Registrar">
-</form>
+            <div class="mb-4">
+                <label for="fecha_nacimiento" class="block text-gray-700 text-sm font-bold mb-2">Fecha de Nacimiento:</label>
+                <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            </div>
 
-<h3>¿Editar algun empleado?</h3>
-@foreach($empleados as $empleado)
-    <i>- </i><a href="{{ route('empleado.editar', $empleado->idEmpleado) }}">Editar {{ $empleado->Nombre }}</a><br><br>
-@endforeach
+            <div class="mb-4">
+                <label for="telefono" class="block text-gray-700 text-sm font-bold mb-2">Teléfono:</label>
+                <input type="text" name="telefono" id="telefono" placeholder="Ingrese su teléfono" maxlength="9" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            </div>
 
-<button class="btn">Button</button>
-<button class="btn btn-neutral">Neutral</button>
-<button class="btn btn-primary">Primary</button>
-<button class="btn btn-secondary">Secondary</button>
-<button class="btn btn-accent">Accent</button>
-<button class="btn btn-ghost">Ghost</button>
-<button class="btn btn-link">Link</button>
+            <div class="flex items-center justify-between">
+                <a href="{{ url()->previous() }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer">Regresar</a>
+                <input type="submit" value="Registrar" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer">
+                <a href="{{ route('empleado.login') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer">Iniciar sesión</a>
+            </div>
+        </form>
+
+        <h3 class="text-lg font-bold mb-2">¿Editar algún empleado?</h3>
+        @foreach ($empleados as $empleado)
+        <p><a href="{{ route('empleado.editar', $empleado->idEmpleado) }}" class="text-blue-500 hover:underline">Editar {{ $empleado->Nombre }}</a></p>
+        @endforeach
+
+    </div>
+
+</body>
+
+</html>

@@ -26,3 +26,13 @@ Route::post('/registrar-empleado', [EmpleadoController::class, 'registrar'])->na
 
 Route::get('/empleado/editar/{id}', [EmpleadoController::class, 'editar'])->name('empleado.editar');
 Route::put('/empleado/actualizar/{id}', [EmpleadoController::class, 'actualizar'])->name('empleado.actualizar');
+
+Route::get('/empleado/panel', [EmpleadoController::class, 'panel'])->name('empleado.panel');
+//Route::get('/empleado/login', [EmpleadoController::class, 'panel'])->name('login');
+
+Route::get('/empleado/login', function () {
+    return view('empleado.login');
+})->name('empleado.login');
+
+// Ruta para manejar la autenticación
+Route::post('/empleado/login', [EmpleadoController::class, 'panel'])->name('empleado.login');
