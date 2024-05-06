@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TarjetaController;
 use App\Http\Controllers\EmpleadoController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,11 +20,23 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::get('/tarjetas/index',[TarjetaController::class,'index'])->name('tarjetas.index');
 
 Route::get('/tarjetas/create',[TarjetaController::class,'create'])->name('tarjetas.create');
 
 Route::post('/tarjetas/store',[TarjetaController::class,'store'])->name('tarjetas.store');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/tarjetas/index',[TarjetaController::class,'index'])->name('tarjetas.index');
+
+Route::get('/tarjetas/create',[TarjetaController::class,'create'])->name('tarjetas.create');
+
+Route::post('/tarjetas/store',[TarjetaController::class,'store'])->name('tarjetas.store');
+
 
 Route::get('/empleado', [App\Http\Controllers\EmpleadoController::class, 'index'])->name('empleado.index'); // con el name se hace el redireccionamiento en el controller 
 Route::post('/registrar-empleado', [EmpleadoController::class, 'registrar'])->name('empleado.registrar');
@@ -40,3 +53,4 @@ Route::get('/empleado/login', function () {
 
 // Ruta para manejar la autenticación
 Route::post('/empleado/login', [EmpleadoController::class, 'panel'])->name('empleado.login');
+
