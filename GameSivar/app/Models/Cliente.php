@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Cliente extends Model
 {
+
     use HasFactory;
 
     protected $table = 'clientes';
@@ -23,4 +25,11 @@ class Cliente extends Model
         'telefono',
         'nacimiento'
     ];
+
+    // Definición de la relación con el expediente del cliente
+    public function expediente()
+    {
+        return $this->hasOne(ExpedienteCliente::class, 'idCliente');
+    }
+
 }
