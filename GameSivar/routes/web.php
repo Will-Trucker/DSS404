@@ -18,5 +18,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/index',[App\Http\Controllers\TarjetaController::class,'index'])->name('tarjetas.index');
+Route::get('/tarjetas/index',[TarjetaController::class,'index'])->name('tarjetas.index');
+
+Route::get('/tarjetas/create',[TarjetaController::class,'create'])->name('tarjetas.create');
+
+Route::post('/tarjetas/store',[TarjetaController::class,'store'])->name('tarjetas.store');
 
