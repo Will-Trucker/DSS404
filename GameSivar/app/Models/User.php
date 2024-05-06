@@ -45,4 +45,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    // Definición de la relación con el expediente del cliente
+    public function expediente()
+    {
+        return $this->hasOne(ExpedienteCliente::class, 'idUsers');
+    }
 }
