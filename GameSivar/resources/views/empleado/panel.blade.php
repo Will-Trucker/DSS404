@@ -25,11 +25,11 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($clientes as $cliente)
+                @foreach($users as $cliente)
                 <tr>
-                    <td class="border px-4 py-2">{{ $cliente->idCliente }}</td>
-                    <td class="border px-4 py-2">{{ $cliente->Nombre }}</td>
-                    <td class="border px-4 py-2">{{ $cliente->Apellido }}</td>
+                    <td class="border px-4 py-2">{{ $cliente->id }}</td>
+                    <td class="border px-4 py-2">{{ $cliente->name }}</td>
+                    <td class="border px-4 py-2">{{ $cliente->lastname }}</td>
                     <td class="border px-4 py-2">{{ $cliente->expediente->PuntosGastados }}</td>
                     <td class="border px-4 py-2">{{ $cliente->expediente->MontoGastado }}</td>
                 </tr>

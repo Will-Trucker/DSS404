@@ -19,6 +19,9 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'lastname',
+        'phone',
+        'birth',
         'email',
         'password',
     ];
@@ -43,8 +46,15 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+
     public function tarjetas()
     {
         return $this->hasMany(TarjetaJuego::class, 'users_id', 'id');
+    }
+    // Definición de la relación con el expediente del cliente
+    public function expediente()
+    {
+        return $this->hasOne(ExpedienteCliente::class, 'idUsers');
+
     }
 }

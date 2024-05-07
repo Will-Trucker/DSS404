@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Empleado;
 use App\Models\Cliente;
 use App\Models\ExpedienteCliente;
+use App\Models\User;
 
 class EmpleadoController extends Controller
 {
@@ -87,8 +88,9 @@ class EmpleadoController extends Controller
 
         if ($empleado) {
             // Si las credenciales son válidas, redirigir al panel del empleado
-            $clientes = Cliente::with('expediente')->get();
-            return view('empleado.panel', compact('clientes'));
+            //$clientes = Cliente::with('expediente')->get();
+            $users = User::with('expediente')->get();
+            return view('empleado.panel', compact('users'));
         } else {
             // Si las credenciales no son válidas, redirigir de nuevo al inicio de sesión con un mensaje de error
             return redirect()->route('empleado.login')->with('error', 'Credenciales incorrectas. Por favor, inténtalo de nuevo.');
