@@ -77,6 +77,16 @@
                                 @enderror 
             </div>
 
+            <div data-mdb-input-init class="form-outline form-white mb-4">
+                <label class="form-label" for="typeEmailX">Fecha Nacimiento</label>
+                <input class="form-control form-control-lg" id="birth" type="date" class="form-control @error('birth') is-invalid @enderror" name="birth" value="{{ old('birth') }}" required autocomplete="birth">  
+                @error('birth')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror 
+            </div>
+
 
               <div data-mdb-input-init class="form-outline form-white mb-4">
                <label class="form-label" for="typePasswordX">Contrasena</label>
@@ -94,7 +104,7 @@
               </div>
 
 
-              <button data-mdb-button-init data-mdb-ripple-init id="simonsyt" class="btn btn-outline-light btn-lg px-5" type="submit">Crear Cuenta</button>
+              <button data-mdb-button-init data-mdb-ripple-init id="simonsytopro" class="btn btn-outline-light btn-lg px-5" type="submit">Crear Cuenta</button>
               
 
             <div>
