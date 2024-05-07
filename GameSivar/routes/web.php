@@ -21,21 +21,19 @@ Route::get('/', function () {
 });
 
 
-Route::get('/tarjetas/index',[TarjetaController::class,'index'])->name('tarjetas.index');
-
-Route::get('/tarjetas/create',[TarjetaController::class,'create'])->name('tarjetas.create');
-
-Route::post('/tarjetas/store',[TarjetaController::class,'store'])->name('tarjetas.store');
-
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/tarjetas/index',[TarjetaController::class,'index'])->name('tarjetas.index');
-
 Route::get('/tarjetas/create',[TarjetaController::class,'create'])->name('tarjetas.create');
-
 Route::post('/tarjetas/store',[TarjetaController::class,'store'])->name('tarjetas.store');
+Route::get('/tarjetas/asignPoints/{userId}',[TarjetaController::class,'asignPoints'])->name('tarjetas.asignPoints');
+Route::post('/tarjetas/asignPoints/storePoints',[TarjetaController::class,'storePoints'])->name('tarjetas.storePoints');
+// Route::get('/tarjetas/deletePoints/{userId}/',[TarjetaController::class,'deletePoints'])->name('tarjetas.deletePoints');
+Route::get('/tarjetas/edit/{userId}', [TarjetaController::class,'editPoints'])->name('tarjetas.edit');
+Route::post('/tarjetas/{id}', [TarjetaController::class,'updatePoints'])->name('tarjetas.update');
+
 
 
 Route::get('/empleado', [App\Http\Controllers\EmpleadoController::class, 'index'])->name('empleado.index'); // con el name se hace el redireccionamiento en el controller 

@@ -11,18 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tarjeta_juegos', function (Blueprint $table) {
+        Schema::create('tarjeta_puntos', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('users_id'); // Cambié el nombre de la columna
-            $table->string('codigo');
-            $table->string('tipo');
-            $table->string('costo');
-            $table->string('estado');
-            $table->date('vencimiento');
-            $table->string('saldo');
-            $table->string('limite');
+            $table->unsignedBigInteger('users_id');
+            $table->unsignedBigInteger('tarjeta_juegos_id');
+            $table->integer('cantidadP');
 
             $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('tarjeta_juegos_id')->references('id')->on('tarjeta_juegos')->onDelete('cascade');
 
             $table->timestamps();
         });
@@ -33,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tarjeta_juegos');
+        Schema::dropIfExists('tarjeta_puntos');
     }
 };

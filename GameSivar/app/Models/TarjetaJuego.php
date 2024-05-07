@@ -16,7 +16,7 @@ class TarjetaJuego extends Model
 
     protected $fillable = [
         'id',
-        'clientes_id',
+        'users_id',
         'codigo',
         'tipo',
         'costo',
@@ -35,9 +35,14 @@ class TarjetaJuego extends Model
         });
     }
 
-    public function cliente()
+    public function usuario()
     {
-        return $this->belongsTo(Cliente::class);
+        return $this->belongsTo(User::class, 'users_id');
+    }
+
+    public function puntos()
+    {
+        return $this->hasOne(TarjetaPunto::class, 'tarjeta_juegos_id');
     }
 
     protected static function generateUniqueCode()

@@ -55,13 +55,13 @@
               @csrf
                 <div class="flex flex-col mb-4">
                     <label class="mb-2 font-bold text-lg text-gray-900" for="first_name">Cliente</label>
-                    <select class="border py-2 px-3 text-grey-800" type="text" name="clientes_id" id="clientes_id" value="{{old('clientes_id')}}">
+                    <select class="border py-2 px-3 text-grey-800" type="text" name="users_id" id="users_id" value="{{old('users_id')}}">
                         <option value="">Seleccione un Cliente</option>
-                        @foreach ($clientes as $cliente)
-                        <option value="{{ $cliente->id }}">{{ $cliente->id }} - {{ $cliente->nombre }} {{ $cliente->apellido }}</option>
+                        @foreach ($users as $user)
+                        <option value="{{ $user->id }}">{{ $user->id }} - {{ $user->name }}</option>
                         @endforeach
                     </select>
-                    @error('clientes_id')
+                    @error('users_id')
                     <p class="text-red-500">{{ $message }}</p>
                     @enderror
                        
