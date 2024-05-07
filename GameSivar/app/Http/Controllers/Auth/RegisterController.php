@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+
 
 class RegisterController extends Controller
 {
@@ -28,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/login';
+    protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
@@ -46,18 +48,21 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'lastname' => ['required', 'string', 'max:255'],
-            'phone' => ['required', 'string', 'max:255'],
-            'birth' => ['required', 'date',],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
-    }
-
+ 
+     protected function validator(array $data)
+     {
+         return Validator::make($data, [
+             'name' => ['required', 'string', 'max:255'],
+             'lastname' => ['required', 'string', 'max:255'],
+             'phone' => ['required', 'string', 'regex:/^[0-9]{8}$/'], // Número de teléfono de 8 dígitos
+             'birth' => ['required', 'date', 'before_or_equal:' . \Carbon\Carbon::now()->subYears(18)->format('Y-m-d')], // Mayor de 18 años
+             'email' => ['required', 'string', 'email', 'max:255', 'unique:users', 'regex:/^(.+)@(outlook\.com|gmail\.com|hotmail\.com|icloud\.com)$/i'], // Correo único
+             'password' => ['required', 'string', 'min:2', 'confirmed'], // Contraseña de al menos 8 caracteres
+         ]);
+     }
+     
+    
+    
     /**
      * Create a new user instance after a valid registration.
      *
@@ -75,4 +80,6 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
+
+    
 }

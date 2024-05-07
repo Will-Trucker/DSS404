@@ -27,7 +27,15 @@
         <div class="card bg-dark text-white" style="border-radius: 1rem;">
           <div class="card-body p-5 text-center">
 
-        
+          @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
             <form action="{{route('register')}}" method="post">
             @csrf
@@ -36,71 +44,47 @@
 
               <div data-mdb-input-init class="form-outline form-white mb-4">
                 <label class="form-label" for="form2Example11">Nombre</label>
-                <input class="form-control form-control-lg" id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>          
-             @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror  
+                <input class="form-control form-control-lg" id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" autocomplete="name" autofocus>          
+              
             </div>
 
 
             <div data-mdb-input-init class="form-outline form-white mb-4">
                 <label class="form-label" for="form2Example11">Apellido</label>
-                <input class="form-control form-control-lg" id="lastname" type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname') }}" required autocomplete="lastname" autofocus>          
-             @error('lastname')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror  
+                <input class="form-control form-control-lg" id="lastname" type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname') }}"  autocomplete="lastname" autofocus>          
+               
             </div>
 
 
             <div data-mdb-input-init class="form-outline form-white mb-4">
                 <label class="form-label" for="form2Example11">Telefono</label>
-                <input class="form-control form-control-lg" id="phone"  type="tel" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>          
-             @error('phone')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror  
+                <input class="form-control form-control-lg" id="phone"  type="tel" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}"  autocomplete="phone" autofocus>          
+             
             </div>
 
 
               <div data-mdb-input-init class="form-outline form-white mb-4">
                 <label class="form-label" for="typeEmailX">Correo</label>
-                <input class="form-control form-control-lg" id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">  
-                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror 
+                <input class="form-control form-control-lg" id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  autocomplete="email">  
+                
             </div>
 
             <div data-mdb-input-init class="form-outline form-white mb-4">
                 <label class="form-label" for="typeEmailX">Fecha Nacimiento</label>
-                <input class="form-control form-control-lg" id="birth" type="date" class="form-control @error('birth') is-invalid @enderror" name="birth" value="{{ old('birth') }}" required autocomplete="birth">  
-                @error('birth')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror 
+                <input class="form-control form-control-lg" id="birth" type="date" class="form-control @error('birth') is-invalid @enderror" name="birth" value="{{ old('birth') }}"  autocomplete="birth">  
+               
             </div>
 
 
               <div data-mdb-input-init class="form-outline form-white mb-4">
                <label class="form-label" for="typePasswordX">Contrasena</label>
-               <input class="form-control form-control-lg" id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-               @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+               <input class="form-control form-control-lg" id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password"  autocomplete="new-password">
+               
               </div>
 
               <div data-mdb-input-init class="form-outline form-white mb-4">
                <label class="form-label" for="typePasswordX">Confirmar Contraseña</label>
-               <input  class="form-control form-control-lg" id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+               <input  class="form-control form-control-lg" id="password-confirm" type="password" class="form-control" name="password_confirmation"  autocomplete="new-password">
               </div>
 
 
