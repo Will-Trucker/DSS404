@@ -6,6 +6,10 @@ use App\Http\Controllers\EmpleadoController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\categoriasController;
 use App\Http\Controllers\JuegoController;
+use App\Http\Controllers\AdminController;
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -79,3 +83,7 @@ Route::get('/juegos', [JuegoController::class, 'index'])->name('juegos.index');
 Route::get('/juegos/{id}', [JuegoController::class, 'juego'])->name('juegos.juego');
 Route::get('/juegos/categorias', [JuegoController::class, 'seleccion'])->name('juegos.seleccion');
 
+Route::group(['middleware' => ['auth', 'admin']], function () {
+    Route::get('/admin/users', [UserAdminController::class, 'index'])->name('admin.users');
+    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+});
