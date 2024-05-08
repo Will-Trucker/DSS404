@@ -20,35 +20,75 @@
 
   </head>
 
-  <body>
-   
 
-  <div class="card-deck">
-  <div class="card">
-    <img class="card-img-top" src=".../100px200/" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+
+
+  <style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #4C4CFF; /* Ajustar al color de fondo deseado */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.games-container {
+    display: flex;
+    gap: 30px; /* Espacio aumentado entre las cajas */
+}
+
+.game-box {
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    width: 500px; /* Ancho aumentado */
+    height: 700px; /* Altura aumentada */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+}
+
+.game-box h2 {
+    background: linear-gradient(145deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2)); /* Degradado más prominente */
+    padding: 20px 40px;
+    border-radius: 5px;
+    font-size: 24px; /* Tamaño de fuente más grande */
+}
+
+.game-box {
+    transition: transform 0.3s ease; /* Agrega una transición suave */
+}
+
+.game-box:hover {
+    transform: scale(1.05); /* Agrandar el recuadro al pasar el mouse */
+    cursor: pointer; /* Cambia el cursor a una mano para indicar clic */
+}
+
+  </style>
+
+
+  <body>
+ 
+
+ 
+  <div class="games-container">
+        <a href=""><div class="game-box"  style="background-image: url('https://cuidatusaludcondiane.com/wp-content/uploads/2011/08/DALL%C2%B7E-2023-12-02-14.15.04-A-vibrant-and-colorful-amusement-park-scene-featuring-a-dramatic-steep-roller-coaster-as-the-centerpiece.-The-roller-coaster-has-sharp-drops-and-tigh.png');">
+            <h2>Juego Mecánico</h2>
+        </div></a>
+        <div class="game-box" style="background-image: url('https://m1.paperblog.com/i/253/2533066/disney-quest-parque-videojuegos-disney-world-L-ygoKpc.jpeg');">
+            <h2>Juego Electrónico</h2>
+        </div>
+        
     </div>
-  </div>
-  <div class="card">
-    <img class="card-img-top" src=".../100px200/" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-    </div>
-  </div>
-  <div class="card">
-    <img class="card-img-top" src=".../100px200/" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-    </div>
-  </div>
-</div>
+
+
+    
+  
 
   
     <script

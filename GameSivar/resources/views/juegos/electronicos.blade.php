@@ -16,8 +16,6 @@
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
     />
-    <link rel="icon" href="{{asset('images/PurpleBadgeAcademyLogo.png')}}">
-
   </head>
 
 
@@ -61,8 +59,9 @@ body {
 
 .game-box h2 {
     background: linear-gradient(145deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2));
-    padding: 10px 20px;
-    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 20px;
+    border-radius: 2px;
 }
 
 .game-box {
@@ -80,26 +79,25 @@ body {
 
 
   <body>
-  
   <div class="games-container">
         <!-- Fila Superior -->
-        <div class="game-box" style="background-image: url('path_to_your_image_of_mechanical_games.jpg');">
-            <h2>Juego Mecánico</h2>
-        </div>
-        <div class="game-box" style="background-image: url('path_to_your_image_of_electronic_games.jpg');">
+        <div class="game-box" style="background-image: url('https://img.freepik.com/psd-gratis/fondo-banner-blanco-juegos_23-2150390433.jpg?size=626&ext=jpg&ga=GA1.1.867424154.1712275200&semt=ais');">
             <h2>Juego Electrónico</h2>
         </div>
-        <div class="game-box" style="background-image: url('path_to_your_image_of_electronic_games.jpg');">
+        <div class="game-box" style="background-image: url('https://img.freepik.com/psd-gratis/fondo-banner-blanco-juegos_23-2150390433.jpg?size=626&ext=jpg&ga=GA1.1.867424154.1712275200&semt=ais');">
+            <h2>Juego Electrónico</h2>
+        </div>
+        <div class="game-box" style="background-image: url('https://img.freepik.com/psd-gratis/fondo-banner-blanco-juegos_23-2150390433.jpg?size=626&ext=jpg&ga=GA1.1.867424154.1712275200&semt=ais');">
             <h2>Juego Electrónico</h2>
         </div>
         <!-- Fila Inferior -->
-        <div class="game-box" style="background-image: url('path_to_your_image_of_mechanical_games.jpg');">
-            <h2>Juego Mecánico</h2>
-        </div>
-        <div class="game-box" style="background-image: url('path_to_your_image_of_electronic_games.jpg');">
+        <div class="game-box" style="background-image: url('https://img.freepik.com/psd-gratis/fondo-banner-blanco-juegos_23-2150390433.jpg?size=626&ext=jpg&ga=GA1.1.867424154.1712275200&semt=ais');">
             <h2>Juego Electrónico</h2>
         </div>
-        <div class="game-box" style="background-image: url('path_to_your_image_of_electronic_games.jpg');">
+        <div class="game-box" style="background-image: url('https://img.freepik.com/psd-gratis/fondo-banner-blanco-juegos_23-2150390433.jpg?size=626&ext=jpg&ga=GA1.1.867424154.1712275200&semt=ais');">
+            <h2>Juego Electrónico</h2>
+        </div>
+        <div class="game-box" style="background-image: url('https://img.freepik.com/psd-gratis/fondo-banner-blanco-juegos_23-2150390433.jpg?size=626&ext=jpg&ga=GA1.1.867424154.1712275200&semt=ais');">
             <h2>Juego Electrónico</h2>
         </div>
     </div>

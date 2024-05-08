@@ -14,16 +14,21 @@ class JuegoController extends Controller
     }
 
     // Método para mostrar un juego específico
-    public function juego($id)
+    public function juego()
     {
 
         return view('juegos.juego');
     }
 
     // Método para mostrar todas las categorías de juegos
-    public function seleccion()
+    public function mecanicos()
     {
 
-        return view('juegos.selecion-juegos');
+        return view('juegos.mecanicos');
+    }
+    public function electronicos()
+    {
+
+        return view('juegos.electronicos');
     }
 }
