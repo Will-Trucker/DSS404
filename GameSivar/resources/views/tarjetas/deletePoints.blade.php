@@ -38,8 +38,8 @@
     <br>
     <div class="flex justify-center items-center h-screen w-full ">
         <div class="w-1/2 bg-white rounded shadow-2xl p-8 m-4">
-            <h1 class="block w-full text-center text-gray-800 text-2xl font-bold mb-6">Asignar Puntos</h1>
-            <form method="post" id="crearTarjetaForm" action="{{ route('tarjetas.update', ['userId' => $userId, 'tarjetaId' => $tarjetaId]) }}" enctype="multipart/form-data">
+            <h1 class="block w-full text-center text-gray-800 text-2xl font-bold mb-6">Eliminar Puntos</h1>
+            <form method="post" id="crearTarjetaForm" action="{{ route('tarjetas.update', ['userId' => $user, 'tarjetaId' => $tarjeta]) }}" enctype="multipart/form-data">
               @csrf
                 <div class="flex flex-col mb-4">
                     <label class="mb-2 font-bold text-lg text-gray-900" for="first_name">Cliente</label>
@@ -53,10 +53,9 @@
                 </div>
                 <div class="flex flex-col mb-4">
                     <label class="mb-2 font-bold text-lg text-gray-900" for="last_name">Tipo Tarjeta</label>
-                    <select name="tarjeta_juegos_id" id="tarjeta_juegos_id" class="border py-2 px-3 text-grey-800" value="{{old('tarjeta_juegos_id')}}">
-                     
-                      <option value="{{ $tarjeta->id }}" selected readonly>{{$tarjeta->tipo}} - {{ $tarjeta->codigo }}</option>
-                 
+                    <select name="tarjeta_juegos_id" id="tarjeta_juegos_id" class="border py-2 px-3 text-grey-800">
+                      <option value="{{ $tarjeta->id }}" selected>{{ $tarjeta->tipo }} - {{ $tarjeta->codigo }}</option>
+                  </select>
                     </select>
                     @error('tarjeta_juegos_id')
                     <p class="text-red-500">{{ $message }}</p>
@@ -64,7 +63,7 @@
                 </div>
                 <div class="flex flex-col mb-4">
                     <label class="mb-2 font-bold text-lg text-gray-900" for="CostoTarjeta">Puntos a Asignar</label>
-                    <input type="number" class="border py-2 px-3 text-grey-800" id="cantidadP" name="cantidadP" value="{{ $tarjetaPunto->cantidadP }}" min="1">
+                    <input type="number" class="border py-2 px-3 text-grey-800" id="cantidadP" name="cantidadP" value="{{ $tarjetaPunto->cantidadP }}" min="0">
                     @error('cantidadP')
                     <p class="text-red-500">{{ $message }}</p>
                     @enderror

@@ -13,9 +13,7 @@ class TarjetaController extends Controller
     public function index()
     {
         $tarjetas = TarjetaJuego::all();
-        if ($tarjetas->isEmpty()) {
-            return redirect()->route('error')->with('message', 'No hay tarjetas disponibles');
-        }
+       
         return view('tarjetas.index', compact('tarjetas'));
     }
 
@@ -108,42 +106,41 @@ class TarjetaController extends Controller
             'tarjeta_juegos_id' => 'required',
             'cantidadP' => 'required|numeric'
         ];
-
+    
         $messages = [
             'users_id.required' => 'El campo Cliente es requerido',
             'tarjeta_juegos_id.required' => 'El campo es Tarjeta Juego es requerido',
             'cantidadP.required' => 'El campo Cantidad Puntos es requerido',
-            'cantidadP.numeric' => 'El campo solo acepta valores númericos'
+            'cantidadP.numeric' => 'El campo solo acepta valores numéricos'
         ];
-
+    
         $validator = Validator::make($request->all(), $rules, $messages);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-
-        $asignacionExistente = TarjetaPunto::where('users_id', $request->users_id)->where('tarjeta_juegos_id', $request->tarjeta_juegos_id)->exists();
-
-        if ($asignacionExistente) {
-            return redirect()->back()->withErrors(['tarjeta_juegos_id' => 'Ya se han asignado puntos a esta tarjeta'])->withInput();
-        }
-
-        $tarjetas = new TarjetaPunto;
-        $tarjetas->users_id = $request->users_id;
-        $tarjetas->tarjeta_juegos_id = $request->tarjeta_juegos_id;
-        $tarjetas->cantidadP = $request->cantidadP;
-        $tarjetas->save();
-
-        return redirect()->route('tarjetas.index')->with('success', 'Asignacion de Puntos Existosamente');
+    
+       
+        // Crear una nueva tarjeta con los nuevos puntos
+        $tarjetaPunto = new TarjetaPunto;
+        $tarjetaPunto->users_id = $request->users_id;
+        $tarjetaPunto->tarjeta_juegos_id = $request->tarjeta_juegos_id;
+        $tarjetaPunto->cantidadP = $request->cantidadP;
+        $tarjetaPunto->save();
+    
+        return redirect()->route('tarjetas.index')->with('success', 'Asignación de Puntos Exitosa');
     }
 
-    public function editPoints($userId,$tarjetaId)
+    public function editPoints($userId, $tarjetaId)
     {
         $user = User::findOrFail($userId);
         $tarjeta = TarjetaJuego::findOrFail($tarjetaId);
-        return view('tarjetas.deletePoints', compact('user', 'tarjeta'));
+        $tarjetaPunto = TarjetaPunto::where('users_id', $userId)
+            ->where('tarjeta_juegos_id', $tarjetaId)
+            ->firstOrFail();
+        return view('tarjetas.deletePoints', compact('user', 'tarjeta', 'tarjetaPunto'));
     }
 
-    public function updatePoints(Request $request, $userId)
+    public function updatePoints(Request $request, $userId, $tarjetaId)
     {
         $rules = [
             'cantidadP' => 'required|numeric'
@@ -161,7 +158,7 @@ class TarjetaController extends Controller
         }
 
 
-        $tarjetaPunto = TarjetaPunto::findOrFail($userId);
+        $tarjetaPunto = TarjetaPunto::findOrFail($tarjetaId);
 
 
         if ($request->cantidadP > $tarjetaPunto->cantidadP) {
