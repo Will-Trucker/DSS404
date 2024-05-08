@@ -3,29 +3,27 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Juego; // Asegúrate de importar el modelo Juego si aún no lo has hecho
-use App\Models\CategoriaJuego; // Asegúrate de importar el modelo CategoriaJuego si aún no lo has hecho
+use App\Models\CategoriaJuego; 
 
 class JuegoController extends Controller
 {
     // Método para mostrar todos los juegos
     public function index()
     {
-        $juegos = Juego::all();
-        return view('juegos.index', compact('juegos'));
+        return view('juegos.categoria-juegos');
     }
 
     // Método para mostrar un juego específico
-    public function show($id)
+    public function juego($id)
     {
-        $juego = Juego::findOrFail($id);
-        return view('juegos.show', compact('juego'));
+
+        return view('juegos.juego');
     }
 
     // Método para mostrar todas las categorías de juegos
-    public function mostrarCategorias()
+    public function seleccion()
     {
-        $categorias = CategoriaJuego::all();
-        return view('juegos.categoria-juegos', compact('categorias'));
+
+        return view('juegos.selecion-juegos');
     }
 }

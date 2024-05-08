@@ -76,6 +76,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 Route::get('/juegos', [JuegoController::class, 'index'])->name('juegos.index');
-Route::get('/juegos/{id}', [JuegoController::class, 'show'])->name('juegos.show');
-Route::get('/juegos/categorias', [JuegoController::class, 'mostrarCategorias'])->name('juegos.mostrarCategorias');
+Route::get('/juegos/{id}', [JuegoController::class, 'juego'])->name('juegos.juego');
+Route::get('/juegos/categorias', [JuegoController::class, 'seleccion'])->name('juegos.seleccion');
 
