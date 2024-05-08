@@ -156,7 +156,7 @@ return [
         'area'                     => 'área',
         'audience_prize'           => 'premio del público',
         'available'                => 'disponible',
-        'birthday'                 => 'cumpleaños',
+        'birth'                 => 'cumpleaños',
         'body'                     => 'cuerpo',
         'city'                     => 'ciudad',
         'compilation'              => 'compilación',

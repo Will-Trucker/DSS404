@@ -4,8 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TarjetaController;
 use App\Http\Controllers\EmpleadoController;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\Admin\UserAdminController;
+use App\Http\Controllers\categoriasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,14 +21,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['middleware' => ['auth', 'admin']], function () {
-    Route::get('/admin/users', [UserAdminController::class, 'index'])->name('admin.users');
-    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-});
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/categoria-juegos', 'CategoriasController@mostrarCategoriaJuegos')->name('categoria-juegos');
 
 Route::get('/tarjetas/index',[TarjetaController::class,'index'])->name('tarjetas.index');
 Route::get('/tarjetas/create',[TarjetaController::class,'create'])->name('tarjetas.create');
