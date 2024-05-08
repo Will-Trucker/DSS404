@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Tarjetas de Juegos</title>
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="icon" href="{{asset('images/PurpleBadgeAcademyLogo.png')}}">
+
 </head>
 <body>
     <header>

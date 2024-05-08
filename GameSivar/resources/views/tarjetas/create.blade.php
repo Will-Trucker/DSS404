@@ -8,6 +8,8 @@
     <title>Crear Tarjetas</title>
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="{{asset('images/PurpleBadgeAcademyLogo.png')}}">
+
 </head>
 
 <body>
