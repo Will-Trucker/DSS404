@@ -60,7 +60,7 @@
                 <p class="u-text u-text-default u-text-2" spellcheck="true"> Desde el momento en que cruzas nuestras
                   puertas, te sumerges en un mundo de diversión, emoción y aventura que perdurará en tu memoria mucho
                   después de que hayas regresado a casa</p>
-                <a href="#"
+                <a href="{{route('register')}}"
                   class="u-border-2 u-border-palette-3-base u-btn u-button-style u-custom-font u-font-montserrat u-palette-3-base u-btn-1">Unirme
                 </a>
                 <a
