@@ -55,8 +55,7 @@
                                         @enderror
                                     </div>
 
-                                    <button data-mdb-button-init data-mdb-ripple-init
-                                        class="btn btn-outline-light btn-lg px-5" type="submit">Crear Cuenta</button>
+                                    <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5" type="submit">Iniciar Sesion </button>
 
 
 
