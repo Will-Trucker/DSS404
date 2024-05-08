@@ -79,9 +79,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/empleado/panel', [EmpleadoController::class, 'panel'])->name('empleado.panel');
 });
 
-Route::get('/juegos', [JuegoController::class, 'index'])->name('juegos.index');
-Route::get('/juegos/{id}', [JuegoController::class, 'juego'])->name('juegos.juego');
-Route::get('/juegos/categorias', [JuegoController::class, 'seleccion'])->name('juegos.seleccion');
+Route::get('/juegos/categorias', [JuegoController::class, 'index'])->name('juegos.index');
+Route::get('/juegos', [JuegoController::class, 'juego'])->name('juegos.juego');
+Route::get('/juegos-electronicos', [JuegoController::class, 'electronicos'])->name('juegos.electronicos');
+Route::get('/juegos-mecanicos', [JuegoController::class, 'mecanicos'])->name('juegos.mecanicos');
 
 Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/admin/users', [UserAdminController::class, 'index'])->name('admin.users');
