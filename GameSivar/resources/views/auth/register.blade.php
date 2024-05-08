@@ -42,18 +42,24 @@
               <h2 class="fw-bold mb-2 text-uppercase">Registro</h2>
               <p class="text-white-50 mb-5">Ingresa tus datos </p>
 
-              <div data-mdb-input-init class="form-outline form-white mb-4">
+
+              <div class="row roww1">
+                  <div class="col-md-6 mb-4 ">
+                  <div data-mdb-input-init class="form-outline form-white mb-4">
                 <label class="form-label" for="form2Example11">Nombre</label>
-                <input class="form-control form-control-lg" id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" autocomplete="name" autofocus>          
+                <input class="form-control form-control-lg roww2" id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" autocomplete="name" autofocus>          
               
             </div>
-
-
-            <div data-mdb-input-init class="form-outline form-white mb-4">
+                  </div>
+                  <div class="col-md-6 mb-4">
+                  <div data-mdb-input-init class="form-outline form-white mb-4">
                 <label class="form-label" for="form2Example11">Apellido</label>
                 <input class="form-control form-control-lg" id="lastname" type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname') }}"  autocomplete="lastname" autofocus>          
                
             </div>
+                  </div>
+                </div>
+
 
 
             <div data-mdb-input-init class="form-outline form-white mb-4">
@@ -70,23 +76,30 @@
             </div>
 
             <div data-mdb-input-init class="form-outline form-white mb-4">
-                <label class="form-label" for="typeEmailX">Fecha Nacimiento</label>
+                <label class="form-label" for="typeEmailX">Fecha nacimiento</label>
                 <input class="form-control form-control-lg" id="birth" type="date" class="form-control @error('birth') is-invalid @enderror" name="birth" value="{{ old('birth') }}"  autocomplete="birth">  
                
             </div>
 
 
-              <div data-mdb-input-init class="form-outline form-white mb-4">
+            <div  class="row">
+                  <div class="col-md-6 mb-4 ">
+                  <div data-mdb-input-init class="form-outline form-white mb-4">
                <label class="form-label" for="typePasswordX">Contrasena</label>
-               <input class="form-control form-control-lg" id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password"  autocomplete="new-password">
+               <input class="form-control form-control-lg roww2" id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password"  autocomplete="new-password">
                
               </div>
 
-              <div data-mdb-input-init class="form-outline form-white mb-4">
-               <label class="form-label" for="typePasswordX">Confirmar Contraseña</label>
-               <input  class="form-control form-control-lg" id="password-confirm" type="password" class="form-control" name="password_confirmation"  autocomplete="new-password">
+                  </div>
+                  <div class="col-md-6 mb-4 ">
+                  <div data-mdb-input-init class="form-outline form-white mb-4">
+               <label class="form-label" for="typePasswordX">Confirmar contraseña</label>
+               <input  class="form-control form-control-lg " id="password-confirm" type="password" class="form-control" name="password_confirmation"  autocomplete="new-password">
               </div>
+                  </div>
+                </div>
 
+             
 
               <button data-mdb-button-init data-mdb-ripple-init id="simonsytopro" class="btn btn-outline-light btn-lg px-5" type="submit">Crear Cuenta</button>
               
