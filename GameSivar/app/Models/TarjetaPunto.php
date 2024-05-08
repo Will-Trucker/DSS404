@@ -31,4 +31,10 @@ class TarjetaPunto extends Model
     {
         return $this->belongsTo(User::class, 'users_id');
     }
+
+    public function puntos()
+{
+    return $this->hasMany(TarjetaPunto::class, 'tarjeta_juegos_id');
+}
+
 }

@@ -36,8 +36,8 @@ Route::post('/tarjetas/asignPoints/storePoints/{userId}/{tarjetaId}',[TarjetaCon
 // Route::get('/tarjetas/deletePoints/{userId}/',[TarjetaController::class,'deletePoints'])->name('tarjetas.deletePoints');
 Route::get('/tarjetas/edit/{userId}/{tarjetaId}', [TarjetaController::class,'editPoints'])->name('tarjetas.edit');
 Route::post('/tarjetas/{userId}/{tarjetaId}', [TarjetaController::class,'updatePoints'])->name('tarjetas.update');
-
-
+Route::delete('/tarjetas/{userId}/{tarjetaId}', [TarjetaController::class,'destroy'])->name('tarjetas.destroy');
+Route::get('/tarjetas/list',[TarjetaController::class,'listaP'])->name('tarjetas.listaP');
 
 Route::get('/empleado', [App\Http\Controllers\EmpleadoController::class, 'index'])->name('empleado.index'); // con el name se hace el redireccionamiento en el controller 
 Route::post('/registrar-empleado', [EmpleadoController::class, 'registrar'])->name('empleado.registrar');
