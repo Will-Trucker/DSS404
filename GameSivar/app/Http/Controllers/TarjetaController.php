@@ -13,10 +13,10 @@ class TarjetaController extends Controller
     public function index()
     {
         $tarjetas = TarjetaJuego::all();
-        if($tarjetas->isEmpty()){
-            return redirect()->route('error')->with('message','No hay tarjetas disponibles');
+        if ($tarjetas->isEmpty()) {
+            return redirect()->route('error')->with('message', 'No hay tarjetas disponibles');
         }
-        return view('tarjetas.index',compact('tarjetas'));
+        return view('tarjetas.index', compact('tarjetas'));
     }
 
     public function create()
@@ -60,7 +60,8 @@ class TarjetaController extends Controller
         $costoTarjeta = $request->input('costo');
 
         // Si no cumple el costo definido para los tipos de tarjetas
-        if (($tipoTarjeta == 'Plus' && $costoTarjeta != 50) || ($tipoTarjeta == 'Silver' && $costoTarjeta != 150) ||
+        if (
+            ($tipoTarjeta == 'Plus' && $costoTarjeta != 50) || ($tipoTarjeta == 'Silver' && $costoTarjeta != 150) ||
             ($tipoTarjeta == 'Gold' && $costoTarjeta != 300)
         ) {
             return redirect()->back()->withInput()->withErrors(['costo' => 'El costo de la tarjeta no es válido para el tipo seleccionado.']);
@@ -93,14 +94,15 @@ class TarjetaController extends Controller
 
 
 
-    public function asignPoints($userId)
-{
-    $user = User::findOrFail($userId);
-    $tarjetas = TarjetaJuego::where('users_id', $userId)->get();
-    return view('tarjetas.asignPoints', compact('user', 'tarjetas'));
-}
+    public function asignPoints($userId, $tarjetaId)
+    {
+        $user = User::findOrFail($userId);
+        $tarjeta = TarjetaJuego::findOrFail($tarjetaId);
+        return view('tarjetas.asignPoints', compact('user', 'tarjeta'));
+    }
 
-    public function storePoints(Request $request){
+    public function storePoints(Request $request, $userId, $tarjetaId)
+    {
         $rules = [
             'users_id' => 'required',
             'tarjeta_juegos_id' => 'required',
@@ -112,11 +114,17 @@ class TarjetaController extends Controller
             'tarjeta_juegos_id.required' => 'El campo es Tarjeta Juego es requerido',
             'cantidadP.required' => 'El campo Cantidad Puntos es requerido',
             'cantidadP.numeric' => 'El campo solo acepta valores númericos'
-        ] ;
+        ];
 
-        $validator = Validator::make($request->all(),$rules,$messages);
-        if($validator->fails()){
+        $validator = Validator::make($request->all(), $rules, $messages);
+        if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $asignacionExistente = TarjetaPunto::where('users_id', $request->users_id)->where('tarjeta_juegos_id', $request->tarjeta_juegos_id)->exists();
+
+        if ($asignacionExistente) {
+            return redirect()->back()->withErrors(['tarjeta_juegos_id' => 'Ya se han asignado puntos a esta tarjeta'])->withInput();
         }
 
         $tarjetas = new TarjetaPunto;
@@ -125,39 +133,45 @@ class TarjetaController extends Controller
         $tarjetas->cantidadP = $request->cantidadP;
         $tarjetas->save();
 
-        return redirect()->route('tarjetas.index')->with('success','Asignacion de Puntos Existosamente');
+        return redirect()->route('tarjetas.index')->with('success', 'Asignacion de Puntos Existosamente');
     }
 
-    public function editPoints($userId)
-{
-    $tarjetaPunto = TarjetaPunto::findOrFail($userId);
-    $user = User::findOrFail($tarjetaPunto->users_id);
-    $tarjetas = TarjetaJuego::where('users_id', $tarjetaPunto->users_id)->get();
-    return view('tarjetas.deletePoints', compact('tarjetaPunto', 'user', 'tarjetas'));
-}
+    public function editPoints($userId,$tarjetaId)
+    {
+        $user = User::findOrFail($userId);
+        $tarjeta = TarjetaJuego::findOrFail($tarjetaId);
+        return view('tarjetas.deletePoints', compact('user', 'tarjeta'));
+    }
 
     public function updatePoints(Request $request, $userId)
-{
-    $rules = [
-        'cantidadP' => 'required|numeric'
-    ];
+    {
+        $rules = [
+            'cantidadP' => 'required|numeric'
+        ];
 
-    $messages = [
-        'cantidadP.required' => 'El campo Cantidad Puntos es requerido',
-        'cantidadP.numeric' => 'El campo solo acepta valores númericos'
-    ];
+        $messages = [
+            'cantidadP.required' => 'El campo Cantidad Puntos es requerido',
+            'cantidadP.numeric' => 'El campo solo acepta valores númericos',
+            'cantidadP.max' => 'No se puede aumentar los Puntos. Solo se permite quitar puntos'
+        ];
 
-    $validator = Validator::make($request->all(), $rules, $messages);
-    if ($validator->fails()) {
-        return redirect()->back()->withErrors($validator)->withInput();
+        $validator = Validator::make($request->all(), $rules, $messages);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+
+        $tarjetaPunto = TarjetaPunto::findOrFail($userId);
+
+
+        if ($request->cantidadP > $tarjetaPunto->cantidadP) {
+            return redirect()->back()->withErrors(['cantidadP' => 'No se puede aumentar los puntos. Solo se permite quitar puntos']);
+        }
+        $tarjetaPunto->cantidadP -= $request->cantidadP;
+        $tarjetaPunto->save();
+
+        return redirect()->route('tarjetas.index')->with('success', 'Puntos actualizados exitosamente');
     }
-
-    $tarjetaPunto = TarjetaPunto::findOrFail($userId);
-    $tarjetaPunto->cantidadP = $request->cantidadP;
-    $tarjetaPunto->save();
-
-    return redirect()->route('tarjetas.index')->with('success', 'Puntos actualizados exitosamente');
-}
 
     // Generacion de cadena de numeros aleatorio para asignar tarjetas de jueegos
     protected function generateUniqueCode()

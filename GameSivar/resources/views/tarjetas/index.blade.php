@@ -29,10 +29,6 @@
                         class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
                         Asignar Puntos
                     </a>
-                    <a href="#responsive-header"
-                        class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
-                        Quitar Puntos
-                    </a>
                 </div>
                 <div>
                     <a href="{{ route('tarjetas.create') }}"
@@ -121,10 +117,10 @@
               {{$tarjeta->limite}}
             </td>
               <td class="px-6 py-4">
-                  <a href="{{route('tarjetas.asignPoints',$tarjeta->users_id)}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Asignar Puntos</a> |
-                  <a href="{{ route('tarjetas.edit', $tarjeta->users_id) }}" class="btn btn-primary">Editar</a>
+                  <a href="{{ route('tarjetas.asignPoints', ['userId' => $tarjeta->users_id, 'tarjetaId' => $tarjeta->id]) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Asignar Puntos</a> |
+                  <a href="{{ route('tarjetas.edit', ['userId' => $tarjeta->users_id, 'tarjetaId' => $tarjeta->id]) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Editar</a>
                   |
-                  <a href="" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Borrar Tarejeta</a>
+                  <a href="" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Borrar Tarjeta</a>
               </td>
           </tr>
           @endforeach
