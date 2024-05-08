@@ -5,6 +5,7 @@ use App\Http\Controllers\TarjetaController;
 use App\Http\Controllers\EmpleadoController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\categoriasController;
+use App\Http\Controllers\JuegoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,4 +74,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::put('/empleado/actualizar/{id}', [EmpleadoController::class, 'actualizar'])->name('empleado.actualizar');
     Route::get('/empleado/panel', [EmpleadoController::class, 'panel'])->name('empleado.panel');
 });
+
+Route::get('/juegos', [JuegoController::class, 'index'])->name('juegos.index');
+Route::get('/juegos/{id}', [JuegoController::class, 'show'])->name('juegos.show');
+Route::get('/juegos/categorias', [JuegoController::class, 'mostrarCategorias'])->name('juegos.mostrarCategorias');
 
