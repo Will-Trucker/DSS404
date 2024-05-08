@@ -85,7 +85,7 @@
             <div  class="row">
                   <div class="col-md-6 mb-4 ">
                   <div data-mdb-input-init class="form-outline form-white mb-4">
-               <label class="form-label" for="typePasswordX">Contrasena</label>
+               <label class="form-label" for="typePasswordX">Contraseña</label>
                <input class="form-control form-control-lg roww2" id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password"  autocomplete="new-password">
                
               </div>

@@ -39,6 +39,10 @@ body{
     margin-bottom: -25px;
 }
 
+.card-body {
+    margin-bottom: -30px;
+
+  }
 
 @media only screen and (max-width: 768px) {
     .roww2 {
