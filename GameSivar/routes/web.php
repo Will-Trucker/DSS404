@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TarjetaController;
 use App\Http\Controllers\EmpleadoController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\categoriasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/categoria-juegos', 'CategoriasController@mostrarCategoriaJuegos')->name('categoria-juegos');
 
 Route::get('/tarjetas/index',[TarjetaController::class,'index'])->name('tarjetas.index');
 Route::get('/tarjetas/create',[TarjetaController::class,'create'])->name('tarjetas.create');
