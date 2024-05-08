@@ -8,6 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Empleado</title>
     <link href="https://unpkg.com/tailwindcss@^2.2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="icon" href="{{asset('images/PurpleBadgeAcademyLogo.png')}}">
+
 </head>
 
 <body class="bg-gray-100">

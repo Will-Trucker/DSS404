@@ -13,7 +13,7 @@ class TarjetaController extends Controller
     public function index()
     {
         $tarjetas = TarjetaJuego::all();
-       
+
         return view('tarjetas.index', compact('tarjetas'));
     }
 
@@ -106,27 +106,27 @@ class TarjetaController extends Controller
             'tarjeta_juegos_id' => 'required',
             'cantidadP' => 'required|numeric'
         ];
-    
+
         $messages = [
             'users_id.required' => 'El campo Cliente es requerido',
             'tarjeta_juegos_id.required' => 'El campo es Tarjeta Juego es requerido',
             'cantidadP.required' => 'El campo Cantidad Puntos es requerido',
             'cantidadP.numeric' => 'El campo solo acepta valores numéricos'
         ];
-    
+
         $validator = Validator::make($request->all(), $rules, $messages);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-    
-       
+
+
         // Crear una nueva tarjeta con los nuevos puntos
         $tarjetaPunto = new TarjetaPunto;
         $tarjetaPunto->users_id = $request->users_id;
         $tarjetaPunto->tarjeta_juegos_id = $request->tarjeta_juegos_id;
         $tarjetaPunto->cantidadP = $request->cantidadP;
         $tarjetaPunto->save();
-    
+
         return redirect()->route('tarjetas.index')->with('success', 'Asignación de Puntos Exitosa');
     }
 
@@ -169,6 +169,28 @@ class TarjetaController extends Controller
 
         return redirect()->route('tarjetas.index')->with('success', 'Puntos actualizados exitosamente');
     }
+
+    public function destroy($userId, $tarjetaId)
+    {
+        $tarjeta = TarjetaJuego::findOrFail($tarjetaId);
+
+        // Busca y elimina los puntos asociados a esa tarjeta para el usuario especificado
+        TarjetaPunto::where('users_id', $userId)
+            ->where('tarjeta_juegos_id', $tarjetaId)
+            ->delete();
+
+        // Elimina la tarjeta
+        $tarjeta->delete();
+        return redirect()->route('tarjetas.index')->with('success', 'Tarjeta y puntos asociados eliminados exitosamente');
+    }
+
+    public function listaP()
+    {
+        $tarjetas = TarjetaJuego::all();
+        return view('tarjetas.list', compact('tarjetas'));
+    }
+
+
 
     // Generacion de cadena de numeros aleatorio para asignar tarjetas de jueegos
     protected function generateUniqueCode()

@@ -45,6 +45,8 @@ class TarjetaJuego extends Model
         return $this->hasOne(TarjetaPunto::class, 'tarjeta_juegos_id');
     }
 
+    
+
     protected static function generateUniqueCode()
     {
         do {
